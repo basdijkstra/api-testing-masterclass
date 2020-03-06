@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/pl/80-862"
+    },
+    "response": {
+        "status": 200,
+        "body": "Posted!",
+        "headers": {
+            "Content-Type": "text/plain"
+        }
+    }
+}

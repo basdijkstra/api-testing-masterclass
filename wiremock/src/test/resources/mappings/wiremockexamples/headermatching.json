@@ -1,0 +1,15 @@
+{
+    "request": {
+        "method": "GET",
+        "headers": {
+            "headerName": {
+                "equalTo": "headerValue"
+            }
+        }
+    },
+    "response": {
+        "status": 200,
+        "body": "Header matching"
+    }
+}
+

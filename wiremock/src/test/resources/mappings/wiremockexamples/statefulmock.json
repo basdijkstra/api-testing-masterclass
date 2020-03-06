@@ -1,0 +1,46 @@
+{
+  "mappings": [
+    {
+      "scenarioName": "Order processing",
+      "requiredScenarioState": "Started",
+      "request": {
+        "method": "GET",
+        "url": "/order"
+      },
+      "response": {
+        "status": 200,
+        "body" : "Your shopping cart is empty"
+      }
+    },
+
+    {
+      "scenarioName": "Order processing",
+      "requiredScenarioState": "Started",
+      "newScenarioState": "ORDER_PLACED",
+      "request": {
+        "method": "POST",
+        "url": "/order",
+        "bodyPatterns": [
+          { "equalTo": "Ordering 1 item" }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "body": "Item placed in shopping cart"
+      }
+    },
+
+    {
+      "scenarioName": "Order processing",
+      "requiredScenarioState": "ORDER_PLACED",
+      "request": {
+        "method": "GET",
+        "url": "/order"
+      },
+      "response": {
+        "status": 200,
+        "body" : "There is 1 item in your shopping cart"
+      }
+    }
+  ]
+}

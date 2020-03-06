@@ -1,0 +1,24 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "urlPath": "/template-http-method"
+      },
+      "response": {
+        "body": "{{request.requestLine.method}}",
+        "transformers": ["response-template"]
+      }
+    },
+
+    {
+      "request": {
+        "method": "POST",
+        "urlPath": "/template-json-body"
+      },
+      "response": {
+        "body": "{{jsonPath request.body '$.book.title'}}",
+        "transformers": ["response-template"]
+      }
+    }
+  ]
+}
