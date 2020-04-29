@@ -44,7 +44,7 @@ public class RestAssuredExercises4Test {
 	/*******************************************************
 	 * Perform a GET request to /xml/de/24848 to get the
 	 * list of places associated with German zip code 24848
-	 * in XML format. Assert that the latitude for the third
+	 * in XML format. Assert that the latitude for the second
 	 * place in the list equal to 54.45
 	 ******************************************************/
 
@@ -77,12 +77,12 @@ public class RestAssuredExercises4Test {
 	/*******************************************************
 	 * Perform a GET request to /xml/de/24848 to get the
 	 * list of places associated with German zip code 24848
-	 * in XML format. Assert that there are 3 places that
+	 * in XML format. Assert that there are 2 places that
 	 * have a name that starts with 'Klein'
 	 ******************************************************/
 
 	@Test
-	public void getDeZipCode24848_checkNumberOfPlacesStartingWithKlein_expect3() {
+	public void getDeZipCode24848_checkNumberOfPlacesStartingWithKlein_expect2() {
 
 		given().
 			spec(requestSpec).
