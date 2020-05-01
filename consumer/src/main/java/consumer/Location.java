@@ -12,5 +12,4 @@ public class Location {
     private String country;
     private String countryAbbreviation;
     private List<Place> places;
-
 }
