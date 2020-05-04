@@ -18,7 +18,7 @@ public class ReadyTest {
 
         given().
         when().
-            get("http://localhost:9876/us/90210").
+            get("http://localhost:9876/us/12345").
         then().
             assertThat().
             statusCode(200);
