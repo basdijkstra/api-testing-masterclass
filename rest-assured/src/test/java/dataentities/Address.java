@@ -7,15 +7,15 @@ public class Address {
     private int zipCode;
     private String city;
 
-    public Address() {
-    }
-
     public Address(String street, int houseNumber, int zipCode, String city) {
 
         this.street = street;
         this.houseNumber = houseNumber;
         this.zipCode = zipCode;
         this.city = city;
+    }
+
+    public Address() {
     }
 
     public String getStreet() {

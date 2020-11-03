@@ -29,8 +29,12 @@ public class RestAssuredExercises5Test {
 
 	/*******************************************************
 	 * Create a new Car object that represents a 2012 Ford Focus
+	 * by passing these values to the POJO constructor
+	 *
 	 * POST this object to /car/postcar
+	 *
 	 * Verify that the response HTTP status code is equal to 200
+	 * (note that this will only work if you use these exact values!)
 	 ******************************************************/
 
 	@Test
@@ -47,10 +51,14 @@ public class RestAssuredExercises5Test {
 
 	/*******************************************************
 	 * Perform a GET to /car/getcar/alfaromeogiulia
-	 * Store the response in a Car object
+	 *
+	 * Store the response in a Car object using deserialization
+	 *
 	 * Verify, using that object, that the model year = 2016
+	 *
 	 * Use the standard Assert.assertEquals(expected,actual)
-	 * as provided by JUnit for the assertion
+	 * as provided by JUnit for the assertion, and the
+	 * getModelYear() method to retrieve the actual model year
 	 ******************************************************/
 
 	@Test
@@ -60,7 +68,6 @@ public class RestAssuredExercises5Test {
 		// Use Car myCar = given(). ...
 
 		given().
-			spec(requestSpec).
 			when();
 
 		// Then, write a JUnit assertion to verify the modelYear

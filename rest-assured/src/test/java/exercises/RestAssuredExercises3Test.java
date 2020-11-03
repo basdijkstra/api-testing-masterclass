@@ -31,7 +31,8 @@ public class RestAssuredExercises3Test {
 	 * - the response has statusCode 200
 	 * - the response contentType is JSON
 	 * - the value of 'country' in the response body
-	 *   is equal to 'United States'
+	 *   is equal to 'United States' (use the GPath expression
+	 *   "country" to extract the required element)
 	 ******************************************************/
 
 	private static ResponseSpecification responseSpec;
@@ -43,10 +44,13 @@ public class RestAssuredExercises3Test {
 
 	/*******************************************************
 	 * Perform a GET request to /us/90210
+	 *
 	 * Use the previously created ResponseSpecification to
 	 * execute the specified checks
+	 *
 	 * Additionally, check that 'country abbreviation' is
-	 * equal to 'US'
+	 * equal to 'US' (use the GPath expression
+	 * "'country abbreviation'" to extract the required element)
 	 ******************************************************/
 
 	@Test
@@ -60,8 +64,10 @@ public class RestAssuredExercises3Test {
 
 	/*******************************************************
 	 * Perform a GET request to /us/90210
+	 *
 	 * Extract the value of the 'country' element in the
 	 * response into a String variable actualCountry
+	 *
 	 * Use the given JUnit assertion to check on its value
 	 ******************************************************/
 

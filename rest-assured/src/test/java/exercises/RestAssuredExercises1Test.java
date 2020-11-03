@@ -72,6 +72,9 @@ public class RestAssuredExercises1Test {
 	 * Send a GET request to /us/90210 and check
 	 * that the state associated with the first place
 	 * in the list returned is equal to 'California'
+	 *
+	 * Use the GPath expression "places[0].state" to
+	 * extract the required response body element
 	 **********************************************/
 
 	@Test
@@ -87,6 +90,9 @@ public class RestAssuredExercises1Test {
 	 * Send a GET request to /de/24848 and check that
 	 * the list of place names returned contains the
 	 * value 'Kropp'
+	 *
+	 * Use the GPath expression "places.'place name'" to
+	 * extract the required response body elements
 	 **********************************************/
 
 	@Test
@@ -102,6 +108,9 @@ public class RestAssuredExercises1Test {
 	 * Send a GET request to /de/24848 and check that
 	 * the list of place names returned does not
 	 * contain the value 'Frankfurt'
+	 *
+	 * Use the GPath expression "places.'place name'" to
+	 * extract the required response body elements
 	 **********************************************/
 
 	@Test
@@ -117,6 +126,9 @@ public class RestAssuredExercises1Test {
 	 * Send a GET request to /de/24848 and check that
 	 * the list of place names returned is a
 	 * collection of size 4
+	 *
+	 * Use the GPath expression "places.'place name'" to
+	 * extract the required response body elements
 	 **********************************************/
 
 	@Test
