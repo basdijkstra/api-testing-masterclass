@@ -17,8 +17,8 @@ import org.springframework.web.client.HttpClientErrorException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE,
-    properties = "zip_provider.base-url:http://localhost:${RANDOM_PORT}",
-    classes = LocationServiceClient.class)
+        properties = "zip_provider.base-url:http://localhost:${RANDOM_PORT}",
+        classes = LocationServiceClient.class)
 public class LocationServiceContractTest {
 
     private static final String ZIP_CODE = "90210";
@@ -33,7 +33,7 @@ public class LocationServiceContractTest {
 
     @Rule
     public PactProviderRuleMk2 provider = new PactProviderRuleMk2("zip_provider", null,
-        randomPort.getPort(), this);
+            randomPort.getPort(), this);
 
     @Rule
     public ExpectedException expandException = ExpectedException.none();
@@ -46,37 +46,37 @@ public class LocationServiceContractTest {
     public RequestResponsePact pactForZipCodeExists(PactDslWithProvider builder) {
 
         DslPart body = LambdaDsl.newJsonBody((o) -> o
-            .stringType("zipCode", ZIP_CODE)
-            .stringType("country", COUNTRY)
-            .stringType("countryAbbreviation", COUNTRY_ABBREVIATION)
-            .minArrayLike("places", 1, 1, place -> place
-                .stringType("placeName", PLACE_NAME)
-                .stringType("state", STATE)
-                .stringType("stateAbbreviation", STATE_ABBREVIATION)
-            )).build();
+                .stringType("zipCode", ZIP_CODE)
+                .stringType("country", COUNTRY)
+                .stringType("countryAbbreviation", COUNTRY_ABBREVIATION)
+                .minArrayLike("places", 1, 1, place -> place
+                        .stringType("placeName", PLACE_NAME)
+                        .stringType("state", STATE)
+                        .stringType("stateAbbreviation", STATE_ABBREVIATION)
+                )).build();
 
         return builder.given(
-            "the zip code exists")
-            .uponReceiving("A request for location data")
-            .path("/us/90210")
-            .method("GET")
-            .willRespondWith()
-            .status(200)
-            .body(body)
-            .toPact();
+                "the zip code exists")
+                .uponReceiving("A request for location data")
+                .path("/us/90210")
+                .method("GET")
+                .willRespondWith()
+                .status(200)
+                .body(body)
+                .toPact();
     }
 
     @Pact(consumer = "zip_consumer")
     public RequestResponsePact pactForZipCodeDoesNotExist(PactDslWithProvider builder) {
 
         return builder.given(
-            "the zip code does not exist")
-            .uponReceiving("A request for location data")
-            .path("/us/99999")
-            .method("GET")
-            .willRespondWith()
-            .status(404)
-            .toPact();
+                "the zip code does not exist")
+                .uponReceiving("A request for location data")
+                .path("/us/99999")
+                .method("GET")
+                .willRespondWith()
+                .status(404)
+                .toPact();
     }
 
     @PactVerification(fragment = "pactForZipCodeExists")
@@ -88,8 +88,8 @@ public class LocationServiceContractTest {
         assertThat(location.getCountry()).isEqualTo(COUNTRY);
         assertThat(location.getCountryAbbreviation()).isEqualTo(COUNTRY_ABBREVIATION);
         assertThat(location.getPlaces()).hasSize(1)
-            .extracting(Place::getPlaceName, Place::getState, Place::getStateAbbreviation)
-            .containsExactly(Tuple.tuple(PLACE_NAME, STATE, STATE_ABBREVIATION));
+                .extracting(Place::getPlaceName, Place::getState, Place::getStateAbbreviation)
+                .containsExactly(Tuple.tuple(PLACE_NAME, STATE, STATE_ABBREVIATION));
     }
 
     @PactVerification(fragment = "pactForZipCodeDoesNotExist")
