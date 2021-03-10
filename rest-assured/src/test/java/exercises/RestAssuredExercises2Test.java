@@ -53,11 +53,21 @@ public class RestAssuredExercises2Test {
 	 ******************************************************/
 
 	@Test
-	public void checkStateForCountryCodeAndZipCode() {
+	@DataProvider({
+			"us, 90210, California",
+			"us, 12345, New York",
+			"ca, Y1A, Yukon"
+	})
+	public void checkStateForCountryCodeAndZipCode(String countryCode, String zipCode, String expectedState) {
 
 		given().
 			spec(requestSpec).
+				pathParam("countryCode", countryCode).
+				pathParam("zipCode", zipCode).
 		when().
-		then();
+				get("/{countryCode}/{zipCode}").
+		then()
+			.assertThat()
+			.body("places[0].state", equalTo(expectedState));
 	}
 }

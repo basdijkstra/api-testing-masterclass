@@ -34,6 +34,15 @@ public class WireMockExercises1 {
          * to /pl/80-862 with an HTTP status code 200
          ************************************************/
 
+        stubFor(
+                post(
+                        urlEqualTo("/pl/80-862"))
+                        .willReturn(
+                                aResponse()
+                                        .withStatus(200)
+                        )
+        );
+
     }
 
     public void setupStubExercise102() {

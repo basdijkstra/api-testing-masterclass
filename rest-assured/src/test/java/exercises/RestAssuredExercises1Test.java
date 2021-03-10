@@ -37,7 +37,9 @@ public class RestAssuredExercises1Test {
 		given().
 			spec(requestSpec).
 			when().
-			then();
+				get("/us/90210").
+			then().
+				statusCode(200);
 	}
 
 	/*******************************************************

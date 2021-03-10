@@ -34,9 +34,9 @@ public class RestAssuredAnswers1Test {
 	public void requestUsZipCode90210_checkResponseCode_expect200() {
 				
 		given().
-			spec(requestSpec).
+		    spec(requestSpec).
 		when().
-			get("/us/90210").
+		  	get("/us/90210").
 		then().
 			assertThat().
 			statusCode(200);
