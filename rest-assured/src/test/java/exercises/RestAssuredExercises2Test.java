@@ -36,38 +36,44 @@ public class RestAssuredExercises2Test {
 	 * us           | 90210    | California
 	 * us           | 12345    | New York
 	 * ca           | Y1A      | Yukon
-	 ******************************************************/
-
-
-
-	/*******************************************************
-	 * Request zip code data for the given country / zip
-	 * combinations by sending a GET to /<countryCode>/<zipCode>.
 	 *
-	 * Use the test data collection created
-	 * above. Check that the state returned by the API
-	 * matches the expected value.
-	 *
-	 * Use the GPath expression "places[0].state" to
-	 * extract the required response body element
+	 * Use that DataProvider to turn the three tests below
+	 * into a single, data-driven test
 	 ******************************************************/
 
 	@Test
-	@DataProvider({
-			"us, 90210, California",
-			"us, 12345, New York",
-			"ca, Y1A, Yukon"
-	})
-	public void checkStateForCountryCodeAndZipCode(String countryCode, String zipCode, String expectedState) {
+	public void checkStateForUsZipCode90210() {
 
 		given().
 			spec(requestSpec).
-				pathParam("countryCode", countryCode).
-				pathParam("zipCode", zipCode).
 		when().
-				get("/{countryCode}/{zipCode}").
-		then()
-			.assertThat()
-			.body("places[0].state", equalTo(expectedState));
+			get("/us/90210").
+		then().
+			assertThat().
+			body("places[0].state", equalTo("California"));
+	}
+
+	@Test
+	public void checkStateForUsZipCode12345() {
+
+		given().
+			spec(requestSpec).
+		when().
+			get("/us/12345").
+		then().
+			assertThat().
+			body("places[0].state", equalTo("New York"));
+	}
+
+	@Test
+	public void checkStateForCaZipCodeY1A() {
+
+		given().
+			spec(requestSpec).
+		when().
+			get("/ca/Y1A").
+		then().
+			assertThat().
+			body("places[0].state", equalTo("Yukon"));
 	}
 }

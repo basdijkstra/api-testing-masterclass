@@ -23,11 +23,11 @@ public class RestAssuredAnswers2Test {
 	public static void createRequestSpecification() {
 
 		requestSpec = new RequestSpecBuilder().
-			setBaseUri("http://localhost").
-			setPort(9876).
-			build();
+				setBaseUri("http://localhost").
+				setPort(9876).
+				build();
 	}
-	
+
 	/*******************************************************
 	 * Create a DataProvider with three test data rows:
 	 * ------------------------------------
@@ -36,42 +36,27 @@ public class RestAssuredAnswers2Test {
 	 * us           | 90210    | California
 	 * us           | 12345    | New York
 	 * ca           | Y1A      | Yukon
-	 ******************************************************/
-	
-	@DataProvider
-	public static Object[][] zipCodeData() {
-		return new Object[][] {
-				{ "us", "90210", "California" },
-				{ "us", "12345", "New York" },
-				{ "ca", "Y1A", "Yukon" }
-		};
-	}
-	
-	/*******************************************************
-	 * Request zip code data for the given country / zip
-	 * combinations by sending a GET to /<countryCode>/<zipCode>.
 	 *
-	 * Use the test data collection created
-	 * above. Check that the state returned by the API
-	 * matches the expected value.
-	 *
-	 * Use the GPath expression "places[0].state" to
-	 * extract the required response body element
+	 * Use that DataProvider to turn the three tests below
+	 * into a single, data-driven test
 	 ******************************************************/
-	
+
 	@Test
-	@UseDataProvider("zipCodeData")
+	@DataProvider({
+			"us, 90210, California",
+			"us, 12345, New York",
+			"ca, Y1A, Yukon"
+	})
 	public void checkStateForCountryCodeAndZipCode(String countryCode, String zipCode, String expectedState) {
-		
+
 		given().
 			spec(requestSpec).
-		and().
 			pathParam("countryCode", countryCode).
 			pathParam("zipCode", zipCode).
 		when().
 			get("/{countryCode}/{zipCode}").
-		then().
-			assertThat().
-			body("places[0].state",equalTo(expectedState));
+		then()
+			.assertThat()
+			.body("places[0].state", equalTo(expectedState));
 	}
 }
