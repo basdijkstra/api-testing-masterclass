@@ -26,8 +26,10 @@ public class RestAssuredExercises6Test {
 	public static void createRequestSpecification() {
 
 		requestSpec = new RequestSpecBuilder().
-			setBaseUri("https://jsonplaceholder.typicode.com/").
-			build();
+				setBaseUri("http://localhost").
+				setPort(9876).
+				setContentType(ContentType.JSON).
+				build();
 	}
 
 	@Test
