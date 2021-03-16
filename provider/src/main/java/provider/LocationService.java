@@ -2,19 +2,30 @@ package provider;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class LocationService {
 
     public Location findLocation(String countryCode, String zipCode) {
-        return Location.builder()
-            .zipCode(zipCode)
-            .country("United States")
-            .countryAbbreviation(countryCode)
-            .place(Place.builder()
-                .placeName("Beverly Hills")
-                .state("California")
-                .stateAbbreviation("CA")
-                .build())
-            .build();
+
+        Location location = new Location();
+        location.setZipCode(zipCode);
+        location.setCountry("United States");
+        location.setCountryAbbreviation(countryCode);
+
+        List<Place> places = new ArrayList<>();
+
+        Place place = new Place();
+        place.setPlaceName("Beverly Hills");
+        place.setState("California");
+        place.setStateAbbreviation("CA");
+
+        places.add(place);
+
+        location.setPlaces(places);
+
+        return location;
     }
 }
